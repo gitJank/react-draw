@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import AppBar from '../Components/AppBar/AppBar';
 import HomePage from '../Pages/HomePage/HomePage';
 import Aside from '../Components/Aside/Aside';
+import { fetchUser } from '../redux/actions/user';
 
-function App() {
+const App = ({ dispatchFetchUser }) => {
   const [asideOpen, setAsideOpen] = useState(false);
+
+  useEffect(() => {
+    dispatchFetchUser();
+  });
 
   return (
     <div id="app" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -13,6 +19,17 @@ function App() {
       <HomePage />
     </div>
   );
-}
+};
 
-export default App;
+const mapdispatchToProps = disptch => {
+  return {
+    dispatchFetchUser: () => {
+      disptch(fetchUser());
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapdispatchToProps
+)(App);
