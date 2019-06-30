@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const _AppBar = ({ asideOpen, setAsideOpen }) => {
+const _AppBar = ({ asideOpen, setAsideOpen, user }) => {
   const classes = useStyles();
 
   return (
@@ -41,13 +42,23 @@ const _AppBar = ({ asideOpen, setAsideOpen }) => {
           <Typography variant="h6" className={classes.title}>
             Nothing is Art
           </Typography>
-          <a className={classes.login} href="http://localhost:5000/auth/google">
-            Login
-          </a>
+          {user ? (
+            <Typography>{user.displayName}</Typography>
+          ) : (
+            <a className={classes.login} href="http://localhost:5000/auth/google">
+              Login
+            </a>
+          )}
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default _AppBar;
+const mapStateToProps = state => {
+  return {
+    user: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(_AppBar);

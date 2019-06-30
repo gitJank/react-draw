@@ -8,7 +8,6 @@ module.exports = app => {
     })
   );
   app.get('/auth/google/callback', passport.authenticate('google'), async (req, res) => {
-    console.log(req.user);
     res.redirect('http://localhost:3000');
   });
 
@@ -18,7 +17,6 @@ module.exports = app => {
   });
 
   app.get('/api/current_user', (req, res) => {
-    console.log('get current user', req.user);
     res.send(req.user);
   });
 };
