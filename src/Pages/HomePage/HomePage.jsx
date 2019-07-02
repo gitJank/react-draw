@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const HomePage = () => {
+const HomePage = ({ history }) => {
   const classes = useStyles();
 
   return (
@@ -26,7 +26,9 @@ const HomePage = () => {
       <Card className={classes.card}>
         <Typography variant="h2">Welcome</Typography>
         <CardActions className={classes.cardActions}>
-          <Button>Start Drawing</Button>
+          <Button>
+            <a href="http://localhost:5000/auth/google">Log In</a>
+          </Button>
         </CardActions>
       </Card>
     </div>

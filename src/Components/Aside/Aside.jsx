@@ -29,7 +29,7 @@ const Aside = ({ asideOpen }) => {
     >
       <div className={classes.toolbar} />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['My Drawings', 'Browse', 'About', 'Sign Out'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />
           </ListItem>
